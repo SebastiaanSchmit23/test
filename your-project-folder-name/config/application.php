@@ -39,8 +39,8 @@ define('WP_ENV', env('WP_ENV') ?: 'production');
 /**
  * URLs
  */
-Config::define('WP_HOME', env('WP_HOME'));
-Config::define('WP_SITEURL', env('WP_SITEURL'));
+Config::define('WP_HOME', sprintf('http://%s', $_SERVER['HTTP_HOST']));
+Config::define('WP_SITEURL', sprintf('%s/wp', WP_HOME));
 
 /**
  * Custom Content Directory
@@ -52,6 +52,10 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 /**
  * DB settings
  */
+/**
+ * DB settings
+ */
+
 Config::define('DB_NAME', env('DB_NAME'));
 Config::define('DB_USER', env('DB_USER'));
 Config::define('DB_PASSWORD', env('DB_PASSWORD'));
@@ -59,6 +63,7 @@ Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
+
 
 /**
  * Authentication Unique Keys and Salts
